@@ -1,4 +1,4 @@
-      - job_name: 'react-nginx-pods-test-11'
+      - job_name: 'react-nginx-pods'
         kubernetes_sd_configs:
           - role: pod
         relabel_configs:
