@@ -9,9 +9,10 @@ metadata:
     release: prometheus
     app: prometheus
 spec:
+  jobLabel: monitor
   selector:
     matchLabels:
-      app.kubernetes.io/name: react-chart  # Match the service label
+      app: test  # Match the service label
   # Replace with the namespace where your service is deployed
   endpoints:
     - port: metrics        # The port where the metrics are exposed
