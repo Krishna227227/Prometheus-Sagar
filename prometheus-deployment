@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-chart
+  namespace: react-nginx
+  labels:
+    app: react-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: react-demo
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: react-chart
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: react-chart
+        app.kubernetes.io/version: 1.16.0
+        helm.sh/chart: react-chart-0.1.0
+    spec:
+      containers:
+      - name: react-demo
+        image: sagarkakkala385/react-nginx:latest
+        ports:
+        - containerPort: 80
