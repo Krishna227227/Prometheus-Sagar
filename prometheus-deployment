@@ -5,6 +5,10 @@ metadata:
   namespace: react-nginx
   labels:
     app: react-demo
+  annotations:
+    prometheus.io/path: /metrics
+    prometheus.io/port: "9113"
+    prometheus.io/scrape: "true"
 spec:
   replicas: 2
   selector:
@@ -24,3 +28,10 @@ spec:
         image: sagarkakkala385/react-nginx:latest
         ports:
         - containerPort: 80
+      - name: nginx-exporter
+        image: nginx/nginx-prometheus-exporter:latest
+        args:
+          - -nginx.scrape-uri=http://localhost:80/stub_status
+        ports:
+          - containerPort: 9113
+            name: metrics
