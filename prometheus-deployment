@@ -6,6 +6,9 @@ metadata:
   labels:
     app: react-demo
   annotations:
+    deployment.kubernetes.io/revision: "9"
+    meta.helm.sh/release-name: react-chart
+    meta.helm.sh/release-namespace: default
     prometheus.io/path: /metrics
     prometheus.io/port: "9113"
     prometheus.io/scrape: "true"
