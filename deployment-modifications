@@ -1,4 +1,5 @@
 ###add these annotations to deployment
+##testing on release
     prometheus.io/path: /metrics
     prometheus.io/port: "9113"
     prometheus.io/scrape: "true"
