@@ -13,3 +13,25 @@ spec:
   volumeMode: Filesystem
   hostPath:
     path: /mnt/data/prometheus
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: prometheus-server-pv
+  labels:
+    app.kubernetes.io/name: prometheus
+    app.kubernetes.io/part-of: prometheus
+spec:
+  capacity:
+    storage: 8Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  claimRef:
+    namespace: monitoring  # Ensure this matches the PVC namespace
+    name: prometheus-server
+  hostPath:
+    path: "/mnt/data/prometheus"
+
