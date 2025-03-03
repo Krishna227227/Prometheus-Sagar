@@ -13,3 +13,24 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: /mnt/data/alertmanager
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: prometheus-alert-manager-pv
+  labels:
+    app.kubernetes.io/instance: prometheus
+    app.kubernetes.io/name: alertmanager
+spec:
+  capacity:
+    storage: 2Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  claimRef:  # This links the PV to a specific PVC
+    name: storage-prometheus-alertmanager-0
+  hostPath:
+    path: "/mnt/data/alertmanager"
+
